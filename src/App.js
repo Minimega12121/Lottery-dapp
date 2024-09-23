@@ -10,6 +10,7 @@ const App = () => {
   const [balance, setBalance] = useState("");
   const [value, setValue] = useState("");
   const [message, setMessage] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false); // State for dark mode
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,10 +58,24 @@ const App = () => {
     setMessage("A winner has been picked!");
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  // Apply theme class to the body element
+  useEffect(() => {
+    document.body.className = isDarkMode ? "dark-mode" : "light-mode";
+  }, [isDarkMode]);
+
   return (
-    <div className="container my-5">
-      <div className="card shadow-lg p-4">
-        <h2 className="text-center mb-4">🎟️ Lottery Contract</h2>
+    <div className={`container my-5 ${isDarkMode ? "dark-mode" : "light-mode"}`}>
+      <div className={`card shadow-lg p-4 ${isDarkMode ? "bg-dark text-light" : "bg-light text-dark"}`}>
+        <div className="d-flex justify-content-between">
+          <h2 className="text-center mb-4">🎟️ Lottery Contract</h2>
+          <button className="btn btn-secondary" onClick={toggleDarkMode}>
+            {isDarkMode ? "Light Mode" : "Dark Mode"}
+          </button>
+        </div>
 
         <div className="mb-4">
           <p className="lead text-center">
@@ -91,7 +106,7 @@ const App = () => {
                 placeholder="Enter amount in ether"
               />
             </div>
-            <button type="submit" className="btn btn-danger btn-block">
+            <button type="submit" className={`btn btn-block ${isDarkMode ? "btn-danger" : "btn-danger"}`}>
               Enter
             </button>
           </form>
@@ -103,7 +118,7 @@ const App = () => {
           <h4>Ready to pick a winner?</h4>
           <button
             type="button"
-            className="btn btn-primary"
+            className={`btn ${isDarkMode ? "btn-success" : "btn-primary"}`}
             onClick={pickWinnerHandler}
           >
             Pick a Winner!
@@ -118,6 +133,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+}
 
 export default App;

@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+/* Default Light Mode */
+body.light-mode {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+body.light-mode .card {
+  background-color: #ffffff;
+  border-color: #dee2e6;
+}
+
+body.light-mode .btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #343a40;
+  color: #f8f9fa;
+}
+
+body.dark-mode .card {
+  background-color: #495057;
+  border-color: #343a40;
+}
+
+body.dark-mode .btn {
+  background-color: #28a745;
+  color: #fff;
+}
